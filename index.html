@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rostem Belalia — Portfolio SISR</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════
+   VARIABLES & RESET
+════════════════════════════════════════════ */
+:root{
+  --ink:#0F1C33;
+  --ink2:#1B2A4A;
+  --ink3:#243659;
+  --paper:#F6F3EC;
+  --paper2:#EDE9DF;
+  --paper3:#E0D9CC;
+  --rule:#C5BAA8;
+  --accent:#C8A96E; /* or doux */
+  --white:#FFFFFF;
+  --nav:70px;
+  --col:1080px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'IBM Plex Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  font-size:16px;line-height:1.7;
+}
+
+/* ════════════════════════════════════════════
+   GRILLE DE FOND GLOBALE
+════════════════════════════════════════════ */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--rule) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:60px 60px;
+  opacity:.18;
+}
+main,nav,footer{position:relative;z-index:1;}
+
+/* ════════════════════════════════════════════
+   LOGO FILIGRANE — appliqué sur chaque section
+════════════════════════════════════════════ */
+section::before{
+  content:'';
+  position:absolute;
+  top:-2rem; left:-2rem;
+  width:420px; height:420px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 46' fill='none'%3E%3Cline x1='1' y1='13' x2='7' y2='13' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='18' x2='7' y2='18' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='23' x2='7' y2='23' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='28' x2='7' y2='28' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='33' x2='7' y2='33' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='13' x2='39' y2='13' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='18' x2='39' y2='18' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='23' x2='39' y2='23' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='28' x2='39' y2='28' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='33' x2='39' y2='33' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='13' y1='1' x2='13' y2='7' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='18' y1='1' x2='18' y2='7' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='23' y1='1' x2='23' y2='7' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='28' y1='1' x2='28' y2='7' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='33' y1='1' x2='33' y2='7' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='13' y1='45' x2='13' y2='39' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='18' y1='45' x2='18' y2='39' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='23' y1='45' x2='23' y2='39' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='28' y1='45' x2='28' y2='39' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='33' y1='45' x2='33' y2='39' stroke='%230F1C33' stroke-width='1.8' stroke-linecap='round'/%3E%3Crect x='7' y='7' width='32' height='32' rx='6' fill='%230F1C33'/%3E%3Crect x='7' y='7' width='32' height='32' rx='6' fill='none' stroke='%230F1C33' stroke-width='2'/%3E%3Cellipse cx='23' cy='38' rx='17' ry='8' fill='%23C8A96E'/%3E%3Ctext x='23' y='27' font-family='Georgia%2C serif' font-size='13' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3ERB%3C/text%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-size:contain;
+  opacity:.04;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Sections à fond marine : logo blanc à gauche */
+.s-left::before,
+.hero-illo::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 46' fill='none'%3E%3Cline x1='1' y1='13' x2='7' y2='13' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='18' x2='7' y2='18' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='23' x2='7' y2='23' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='28' x2='7' y2='28' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='1' y1='33' x2='7' y2='33' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='13' x2='39' y2='13' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='18' x2='39' y2='18' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='23' x2='39' y2='23' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='28' x2='39' y2='28' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='33' x2='39' y2='33' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='13' y1='1' x2='13' y2='7' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='18' y1='1' x2='18' y2='7' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='23' y1='1' x2='23' y2='7' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='28' y1='1' x2='28' y2='7' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='33' y1='1' x2='33' y2='7' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='13' y1='45' x2='13' y2='39' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='18' y1='45' x2='18' y2='39' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='23' y1='45' x2='23' y2='39' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='28' y1='45' x2='28' y2='39' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='33' y1='45' x2='33' y2='39' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Crect x='7' y='7' width='32' height='32' rx='6' fill='%231B2A4A'/%3E%3Crect x='7' y='7' width='32' height='32' rx='6' fill='none' stroke='white' stroke-width='2'/%3E%3Cellipse cx='23' cy='38' rx='17' ry='8' fill='%23C8A96E'/%3E%3Ctext x='23' y='27' font-family='Georgia%2C serif' font-size='13' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3ERB%3C/text%3E%3C/svg%3E");
+  opacity:.07;
+  top:-1rem; left:-1rem;
+  width:300px; height:300px;
+}
+
+
+/* ════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--nav);
+  background:var(--ink);
+  border-bottom:3px solid var(--accent);
+  display:flex;align-items:stretch;
+  overflow:hidden;
+}
+/* Hachures obliques dans la nav */
+nav::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 2px,
+    transparent 2px,transparent 16px
+  );
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;max-width:var(--col);
+  margin:0 auto;padding:0 2.5rem;
+  position:relative;z-index:1;
+}
+.logo{display:flex;align-items:center;}
+.logo svg{display:block;}
+
+/* ── Logo puce fixe haut droite ── */
+.logo-fixed{
+  position:fixed;
+  top:12px;right:18px;
+  z-index:200;
+  cursor:default;
+  transition:transform .2s, opacity .2s;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.35));
+}
+.logo-fixed:hover{transform:scale(1.08);opacity:.9;}
+.nav-links{display:flex;list-style:none;height:100%;}
+.nav-links li{display:flex;}
+.nav-links a{
+  display:flex;align-items:center;
+  color:rgba(255,255,255,.45);
+  text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:0 14px;
+  border-left:1px solid rgba(255,255,255,.07);
+  border-bottom:3px solid transparent;
+  transition:color .2s,border-color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.04);}
+.nav-links a.active{color:var(--accent);border-bottom-color:var(--accent);}
+
+/* ════════════════════════════════════════════
+   LAYOUT GÉNÉRAL
+════════════════════════════════════════════ */
+main{padding-top:var(--nav);}
+.section-wrap{
+  max-width:var(--col);margin:0 auto;
+  padding:5.5rem 2.5rem;
+}
+section{
+  border-bottom:1px solid var(--rule);
+  position:relative;overflow:hidden;
+}
+
+/* Labels & titres */
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.65rem;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:.8rem;
+}
+.eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--accent);}
+h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(3rem,6vw,5rem);
+  line-height:.95;color:var(--ink);
+  letter-spacing:-.02em;
+  margin-bottom:0;
+}
+h1 em{font-style:italic;color:var(--ink3);}
+h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);
+  color:var(--ink);line-height:1.1;
+  margin-bottom:.3rem;
+}
+h3{
+  font-family:'IBM Plex Sans',sans-serif;
+  font-weight:600;font-size:.95rem;
+  color:var(--ink);margin-bottom:.25rem;
+}
+p{color:#4A5568;margin-bottom:1rem;line-height:1.75;}
+a{color:var(--ink2);}
+.rule{width:44px;height:2px;background:var(--ink);margin:.9rem 0 2.5rem;}
+
+/* Tags */
+.tag{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;font-weight:500;letter-spacing:.06em;
+  padding:3px 9px;margin:3px 3px 0 0;
+}
+.tk{background:var(--ink);color:var(--white);}
+.tl{background:var(--paper2);color:var(--ink);border:1px solid var(--rule);}
+.to{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+.ta{background:transparent;color:var(--accent);border:1px solid var(--accent);}
+
+/* Boutons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;
+  padding:12px 26px;cursor:pointer;transition:all .2s;
+  border:none;
+}
+.bk{background:var(--ink);color:var(--white);}
+.bk:hover{background:var(--ink3);}
+.bo{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.bo:hover{background:var(--ink);color:var(--white);}
+.ba{background:transparent;color:var(--accent);border:1.5px solid var(--accent);}
+.ba:hover{background:var(--accent);color:var(--ink);}
+
+/* ════════════════════════════════════════════
+   §1 HERO — layout bicolonne asymétrique
+════════════════════════════════════════════ */
+#intro{background:var(--paper);}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 440px;
+  gap:0;
+  min-height:calc(100vh - var(--nav));
+  max-width:1280px;
+  margin:0 auto;
+}
+
+/* Colonne texte */
+.hero-text{
+  padding:5.5rem 3.5rem 4rem 3rem;
+  border-right:1px solid var(--rule);
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+/* Quadrillage dense sur la colonne gauche */
+.hero-text::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--rule) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:30px 30px;
+  opacity:.22;
+}
+.hero-text>*{position:relative;z-index:1;}
+.hero-name{margin:1.2rem 0 .5rem;}
+.hero-role{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#8896A5;margin-bottom:2.5rem;
+}
+.hero-desc{
+  font-size:1.05rem;font-weight:300;
+  color:#4A5568;max-width:480px;
+  line-height:1.8;margin-bottom:2rem;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:3rem;}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--rule);
+  background:var(--white);
+}
+.hstat{
+  padding:1.2rem 1.4rem;
+  border-right:1px solid var(--rule);
+}
+.hstat:last-child{border-right:none;}
+.hstat-n{
+  font-family:'DM Serif Display',serif;
+  font-size:2.2rem;line-height:1;
+  color:var(--ink);display:block;
+}
+.hstat-l{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#8896A5;
+}
+
+/* Colonne illustration */
+.hero-illo{
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  padding:3rem 2rem;
+  position:relative;overflow:hidden;
+  min-height:calc(100vh - var(--nav));
+}
+/* Quadrillage marine colonne droite */
+.hero-illo::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+/* Cercle décoratif */
+.hero-illo::after{
+  content:'';position:absolute;
+  bottom:-120px;right:-120px;
+  width:400px;height:400px;
+  border:2px solid rgba(255,255,255,.07);
+  border-radius:50%;pointer-events:none;
+}
+.hero-illo>*{position:relative;z-index:1;}
+.iso-main{width:100%;max-width:380px;display:block;}
+
+/* Séparateur */
+.sep{
+  height:20px;background:var(--ink);
+  position:relative;overflow:hidden;
+}
+.sep::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(200,169,110,.25) 0,rgba(200,169,110,.25) 1px,
+    transparent 1px,transparent 30px
+  );
+}
+
+/* ════════════════════════════════════════════
+   §2 BTS SIO
+════════════════════════════════════════════ */
+#bts{background:var(--paper);}
+/* Filigrane numéro de section */
+#bts::after{
+  content:'02';
+  position:absolute;right:1rem;bottom:1rem;
+  font-family:'DM Serif Display',serif;
+  font-size:14rem;line-height:1;
+  color:var(--ink);opacity:.03;
+  pointer-events:none;user-select:none;
+}
+.bts-layout{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--rule);margin-top:2rem;}
+.bts-card{
+  background:var(--white);
+  padding:2rem 2rem 1.6rem;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:.8rem;
+}
+.bts-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--ink);
+}
+.bts-card-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.12em;color:var(--accent);
+}
+.bts-card h3{font-size:1.05rem;}
+.bts-card p{font-size:.88rem;margin-bottom:0;color:#5A6A7D;}
+/* Fond chevrons dans les cartes BTS */
+.bts-card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(60deg,rgba(27,42,74,.025) 0,rgba(27,42,74,.025) 1px,transparent 1px,transparent 22px),
+    repeating-linear-gradient(120deg,rgba(27,42,74,.025) 0,rgba(27,42,74,.025) 1px,transparent 1px,transparent 22px);
+}
+.bts-card>*{position:relative;z-index:1;}
+
+/* ════════════════════════════════════════════
+   §3 EXPÉRIENCES
+════════════════════════════════════════════ */
+#experience{background:var(--paper2);}
+#experience::after{
+  content:'03';position:absolute;right:1rem;bottom:1rem;
+  font-family:'DM Serif Display',serif;font-size:14rem;line-height:1;
+  color:var(--ink);opacity:.03;pointer-events:none;user-select:none;
+}
+.exp-item{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:0;
+  margin-bottom:1px;
+  background:var(--rule);
+}
+.exp-date-col{
+  background:var(--ink);
+  padding:1.6rem 1.2rem;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  gap:4px;
+}
+.exp-date-txt{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.06em;color:rgba(255,255,255,.5);
+  line-height:1.5;
+  text-transform:uppercase;
+}
+.exp-body{
+  background:var(--white);
+  padding:1.6rem 2rem;
+  position:relative;
+}
+.exp-body::before{
+  content:'';position:absolute;
+  left:0;top:0;bottom:0;width:4px;
+  background:var(--accent);
+}
+.exp-title{font-size:1rem;font-weight:600;margin-bottom:.15rem;}
+.exp-co{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;color:#8896A5;margin-bottom:.8rem;
+}
+.exp-co a{color:var(--ink2);font-weight:500;}
+
+/* ════════════════════════════════════════════
+   §4 COMPÉTENCES — épuré
+════════════════════════════════════════════ */
+#competences{background:var(--paper);}
+#competences::after{
+  content:'04';position:absolute;right:1rem;bottom:1rem;
+  font-family:'DM Serif Display',serif;font-size:14rem;line-height:1;
+  color:var(--ink);opacity:.03;pointer-events:none;user-select:none;
+}
+
+/* Groupes techniques */
+.sk-group{
+  display:flex;align-items:baseline;gap:2.5rem;
+  padding:1.4rem 0;
+  border-bottom:1px solid var(--rule);
+  position:relative;z-index:1;
+}
+.sk-group:last-of-type{border-bottom:none;}
+.sk-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);
+  flex-shrink:0;width:90px;
+  padding-top:2px;
+}
+.sk-list{
+  display:flex;flex-wrap:wrap;gap:6px;flex:1;
+}
+.sk-pill{
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:.82rem;font-weight:400;color:var(--ink);
+  padding:5px 14px;
+  border:1px solid var(--rule);
+  background:var(--white);
+  transition:all .15s;cursor:default;
+}
+.sk-pill:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
+
+/* Soft skills */
+.soft-title-row{
+  display:flex;align-items:baseline;gap:2.5rem;
+  padding:1.4rem 0 1rem;
+  position:relative;z-index:1;
+}
+.soft-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  position:relative;z-index:1;
+}
+.soft-card{
+  background:var(--white);
+  padding:1.3rem 1.4rem;
+  display:flex;flex-direction:column;gap:.3rem;
+}
+.soft-card-title{
+  font-weight:600;font-size:.9rem;color:var(--ink);
+}
+.soft-card-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.6rem;color:#8896A5;letter-spacing:.04em;
+}
+
+@media(max-width:800px){
+  .sk-group{flex-direction:column;gap:.6rem;}
+  .sk-label{width:auto;}
+  .soft-cards{grid-template-columns:1fr 1fr;}
+  .soft-title-row{flex-direction:column;gap:.4rem;}
+}
+@media(max-width:500px){
+  .soft-cards{grid-template-columns:1fr;}
+  .hero-stats{grid-template-columns:1fr;}
+  .hstat{border-right:none;border-bottom:1px solid var(--rule);}
+}
+
+/* ════════════════════════════════════════════
+   §5 PROJETS
+════════════════════════════════════════════ */
+#projets{background:var(--paper2);}
+#projets::after{
+  content:'05';position:absolute;right:1rem;bottom:1rem;
+  font-family:'DM Serif Display',serif;font-size:14rem;line-height:1;
+  color:var(--ink);opacity:.03;pointer-events:none;user-select:none;
+}
+/* Lignes horizontales réglées */
+.proj-item{
+  background:var(--white);
+  border-left:4px solid var(--ink);
+  padding:1.8rem 2rem;
+  margin-bottom:1px;
+  position:relative;overflow:hidden;
+  transition:transform .18s,box-shadow .18s;
+}
+.proj-item:hover{
+  transform:translate(-3px,-3px);
+  box-shadow:7px 7px 0 var(--ink);
+  z-index:2;
+}
+/* Coin coupé */
+.proj-item::after{
+  content:'';position:absolute;top:0;right:0;
+  width:0;height:0;
+  border-style:solid;
+  border-width:0 40px 40px 0;
+  border-color:transparent var(--paper2) transparent transparent;
+}
+.proj-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.8rem;flex-wrap:wrap;}
+.proj-meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.06em;color:#8896A5;margin-top:.2rem;
+}
+.proj-links{display:flex;gap:6px;}
+.proj-links a{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink);text-decoration:none;
+  padding:5px 11px;border:1px solid var(--rule);
+  background:var(--paper2);transition:all .15s;
+}
+.proj-links a:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
+
+/* ════════════════════════════════════════════
+   §6 VEILLE
+════════════════════════════════════════════ */
+#veille{background:var(--paper);}
+#veille::after{
+  content:'06';position:absolute;right:1rem;bottom:1rem;
+  font-family:'DM Serif Display',serif;font-size:14rem;line-height:1;
+  color:var(--ink);opacity:.03;pointer-events:none;user-select:none;
+}
+.veille-year{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.67rem;font-weight:500;letter-spacing:.15em;
+  text-transform:uppercase;
+  background:var(--ink);color:var(--accent);
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 20px;margin:2.5rem 0 1rem;
+}
+.ve{
+  background:var(--white);
+  border-left:4px solid var(--accent);
+  padding:1.3rem 1.8rem;margin-bottom:.8rem;
+  position:relative;overflow:hidden;
+}
+.ve::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(180deg,transparent,transparent 23px,rgba(15,28,51,.03) 23px,rgba(15,28,51,.03) 24px);
+}
+.ve>*{position:relative;z-index:1;}
+.rss{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1.2rem;
+  background:var(--ink);
+  padding:2rem 2.2rem;margin-top:2.5rem;
+  position:relative;overflow:hidden;
+}
+.rss::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(200,169,110,.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,169,110,.1) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.rss>*{position:relative;z-index:1;}
+.rss-title{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:.3rem;}
+.rss-sub{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.4);}
+.rss-sub strong{color:rgba(255,255,255,.75);}
+.rss-links{display:flex;gap:8px;flex-wrap:wrap;}
+.rss-links a{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  padding:8px 16px;border:1px solid rgba(200,169,110,.35);
+  transition:all .15s;
+}
+.rss-links a:hover{background:var(--accent);color:var(--ink);}
+
+/* ════════════════════════════════════════════
+   §7 CONTACT
+════════════════════════════════════════════ */
+#contact{background:var(--paper2);}
+#contact::after{
+  content:'07';position:absolute;right:1rem;bottom:1rem;
+  font-family:'DM Serif Display',serif;font-size:14rem;line-height:1;
+  color:var(--ink);opacity:.03;pointer-events:none;user-select:none;
+}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;
+  margin-top:1rem;position:relative;z-index:1;
+}
+.ci h3{font-size:1.1rem;margin-bottom:.5rem;}
+.ci p{font-size:.9rem;color:#5A6A7D;}
+.social-links{margin-top:2rem;display:flex;flex-direction:column;gap:1px;background:var(--rule);}
+.social-links a{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;
+  padding:12px 16px;background:var(--white);
+  border-left:3px solid transparent;
+  transition:all .15s;
+}
+.social-links a:hover{border-left-color:var(--accent);background:var(--paper);padding-left:20px;}
+.social-links a span{font-size:.6rem;color:#8896A5;}
+.fg{margin-bottom:1rem;}
+.fg label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);margin-bottom:5px;
+}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:var(--white);
+  border:1px solid var(--rule);border-bottom:2px solid var(--ink);
+  padding:10px 13px;color:var(--ink);
+  font-family:'IBM Plex Sans',sans-serif;font-size:.9rem;
+  outline:none;transition:border-color .2s;border-radius:0;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--ink);border-bottom-color:var(--accent);}
+.fg textarea{resize:vertical;min-height:110px;}
+.fg select option{background:#fff;}
+.fnote{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;color:#8896A5;
+  padding:9px 13px;background:var(--white);
+  border-left:3px solid var(--accent);margin-bottom:1.2rem;
+  line-height:1.5;
+}
+.fsub{
+  background:var(--ink);color:var(--white);border:none;
+  padding:13px 32px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.fsub:hover{background:var(--ink3);}
+.fsub::after{content:'→';}
+.fok{display:none;margin-top:1rem;padding:10px 14px;background:var(--white);border-left:3px solid #2E6B30;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#2E6B30;letter-spacing:.04em;}
+
+/* ════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+footer{
+  background:var(--ink);
+  padding:2.5rem;
+  position:relative;overflow:hidden;
+}
+footer::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+footer::after{
+  content:'RB';
+  position:absolute;right:2rem;bottom:-1rem;
+  font-family:'DM Serif Display',serif;
+  font-size:10rem;color:rgba(255,255,255,.03);
+  pointer-events:none;user-select:none;line-height:1;
+}
+.footer-inner{
+  max-width:var(--col);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+  position:relative;z-index:1;
+}
+.footer-name{
+  font-family:'DM Serif Display',serif;
+  font-size:1.1rem;color:var(--white);
+}
+.footer-meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;color:rgba(255,255,255,.3);
+  letter-spacing:.1em;
+}
+.footer-accent{color:var(--accent);}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+
+/* Écrans larges : hero avec fond pleine largeur mais contenu centré */
+@media(min-width:1280px){
+  #intro{
+    background:linear-gradient(to right, var(--paper) 0%, var(--paper) 50%, var(--ink) 50%, var(--ink) 100%);
+  }
+}
+
+@media(max-width:1100px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) 380px;}
+}
+
+@media(max-width:800px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-illo{min-height:320px;padding:2.5rem;}
+  .hero-text{border-right:none;border-bottom:1px solid var(--rule);padding:4rem 1.8rem 3rem;}
+  .bts-layout{grid-template-columns:1fr;}
+  .skill-block{grid-template-columns:1fr;}
+  .skill-label-col{writing-mode:initial;transform:none;padding:.8rem 1.2rem;}
+  .skill-label{writing-mode:initial;transform:none;}
+  .soft-grid{grid-template-columns:1fr 1fr;}
+  .exp-item{grid-template-columns:1fr;}
+  .exp-date-col{padding:.8rem 1.2rem;}
+  .contact-grid{grid-template-columns:1fr;}
+  .section-wrap{padding:4rem 1.4rem;}
+  .nav-inner{padding:0 1.2rem;}
+  .nav-links a{padding:0 8px;font-size:.65rem;}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr;}
+}
+@media(max-width:500px){
+  .soft-grid{grid-template-columns:1fr;}
+  .hero-stats{grid-template-columns:1fr;}
+  .hstat{border-right:none;border-bottom:1px solid var(--rule);}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="#intro">Index</a></li>
+      <li><a href="#bts">Formation</a></li>
+      <li><a href="#experience">Parcours</a></li>
+      <li><a href="#competences">Stack</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#veille">Veille</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Logo puce fixe en haut à droite -->
+<div class="logo-fixed" aria-label="RB">
+  <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="1" y1="13" x2="7" y2="13" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="1" y1="18" x2="7" y2="18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="1" y1="23" x2="7" y2="23" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="1" y1="28" x2="7" y2="28" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="1" y1="33" x2="7" y2="33" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="45" y1="13" x2="39" y2="13" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="45" y1="18" x2="39" y2="18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="45" y1="23" x2="39" y2="23" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="45" y1="28" x2="39" y2="28" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="45" y1="33" x2="39" y2="33" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="13" y1="1" x2="13" y2="7" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="18" y1="1" x2="18" y2="7" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="23" y1="1" x2="23" y2="7" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="28" y1="1" x2="28" y2="7" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="33" y1="1" x2="33" y2="7" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="13" y1="45" x2="13" y2="39" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="18" y1="45" x2="18" y2="39" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="23" y1="45" x2="23" y2="39" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="28" y1="45" x2="28" y2="39" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="33" y1="45" x2="33" y2="39" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <rect x="7" y="7" width="32" height="32" rx="6" fill="#1B2A4A"/>
+    <rect x="7" y="7" width="32" height="32" rx="6" fill="none" stroke="white" stroke-width="2"/>
+    <clipPath id="chip-clip">
+      <rect x="7" y="7" width="32" height="32" rx="6"/>
+    </clipPath>
+    <ellipse cx="23" cy="38" rx="17" ry="8" fill="#C8A96E" clip-path="url(#chip-clip)"/>
+    <text x="23" y="27" font-family="'DM Serif Display', Georgia, serif" font-size="13" font-weight="700" fill="white" text-anchor="middle" dominant-baseline="middle" letter-spacing="0.5">RB</text>
+  </svg>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     §1 PRÉSENTATION
+══════════════════════════════════════════ -->
+<section id="intro">
+  <div class="hero-grid">
+
+    <!-- Texte -->
+    <div class="hero-text">
+      <div>
+        <div class="eyebrow">BTS SIO · Option SISR · 2023–2025</div>
+
+        <h1 class="hero-name">
+          <!-- REMPLACER -->
+          Rostem<br><em>Belalia</em>
+        </h1>
+
+        <div class="hero-role">
+          Etudiant en administration systèmes & reseaux — Disponible alternance/stage
+        </div>
+
+        <!-- REMPLACER : votre accroche -->
+        <p class="hero-desc">Je suis en 2 eme années de BTS SIO -SISR , ce portfolio me sert donc de support pour l'épreuve de E5.
+</p>
+
+        <div class="hero-btns">
+          <a href="cv.pdf" download class="btn bk">Télécharger mon CV</a>
+          <a href="#contact" class="btn bo">Me contacter</a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <!-- REMPLACER -->
+        <div class="hstat">
+          <span class="hstat-n">2024</span>
+          <span class="hstat-l">Debut BTS SIO</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n">5+</span>
+          <span class="hstat-l">Projet et TP important </span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n">2</span>
+          <span class="hstat-l">Experiences pro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Illustration isométrique -->
+    <div class="hero-illo">
+      <svg class="iso-main" viewBox="0 0 420 520" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+        <!-- ── Lignes réseau en pointillés ── -->
+        <g stroke="rgba(200,169,110,.35)" stroke-width="1.2" stroke-dasharray="5 5">
+          <line x1="210" y1="260" x2="80" y2="160"/>
+          <line x1="210" y1="260" x2="340" y2="160"/>
+          <line x1="210" y1="260" x2="68" y2="350"/>
+          <line x1="210" y1="260" x2="352" y2="350"/>
+          <line x1="210" y1="260" x2="210" y2="120"/>
+          <line x1="210" y1="260" x2="140" y2="410"/>
+          <line x1="210" y1="260" x2="285" y2="415"/>
+        </g>
+
+        <!-- ── SERVEUR RACK CENTRAL ── -->
+        <g transform="translate(160,205)">
+          <!-- rack corps -->
+          <polygon points="50,0 100,29 100,95 50,124 0,95 0,29" fill="#1B2A4A"/>
+          <!-- face droite -->
+          <polygon points="100,29 122,17 122,83 100,95" fill="#243659"/>
+          <!-- face gauche -->
+          <polygon points="0,29 50,0 72,-12 22,-12" fill="#2E4470" opacity=".75"/>
+          <!-- top face -->
+          <polygon points="50,0 72,-12 122,17 100,29" fill="#344F7A" opacity=".6"/>
+          <!-- détails façade -->
+          <line x1="12" y1="48" x2="88" y2="48" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+          <line x1="12" y1="60" x2="88" y2="60" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+          <line x1="12" y1="72" x2="88" y2="72" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+          <line x1="12" y1="84" x2="88" y2="84" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+          <!-- LEDs -->
+          <circle cx="78" cy="43" r="4" fill="#2ECC71"/>
+          <circle cx="78" cy="55" r="4" fill="#5DADE2"/>
+          <circle cx="78" cy="67" r="4" fill="#E74C3C"/>
+          <circle cx="78" cy="79" r="4" fill="#F39C12"/>
+          <!-- Port USB -->
+          <rect x="14" y="40" width="10" height="6" rx="1" fill="#243659"/>
+          <rect x="14" y="56" width="10" height="6" rx="1" fill="#243659"/>
+          <!-- rack 2 dessous -->
+          <polygon points="50,124 100,95 100,118 50,147 0,118 0,95" fill="#1B2A4A"/>
+          <polygon points="100,95 122,83 122,106 100,118" fill="#243659"/>
+          <line x1="12" y1="108" x2="88" y2="108" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          <circle cx="78" cy="104" r="3.5" fill="#F39C12"/>
+          <circle cx="70" cy="104" r="3.5" fill="#2ECC71"/>
+        </g>
+
+        <!-- ── DESKTOP gauche haut ── -->
+        <g transform="translate(28,110)">
+          <!-- écran -->
+          <polygon points="0,14 42,14 42,58 0,58" fill="#1B2A4A"/>
+          <polygon points="42,14 56,6 56,50 42,58" fill="#243659"/>
+          <polygon points="0,14 14,6 56,6 42,14" fill="#2E4470"/>
+          <!-- contenu écran -->
+          <polygon points="4,18 40,18 40,54 4,54" fill="#1E3A5F" opacity=".9"/>
+          <!-- code lines -->
+          <line x1="8" y1="26" x2="36" y2="26" stroke="rgba(200,169,110,.5)" stroke-width="1.5"/>
+          <line x1="8" y1="32" x2="28" y2="32" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+          <line x1="8" y1="38" x2="32" y2="38" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          <line x1="8" y1="44" x2="22" y2="44" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          <!-- pied -->
+          <rect x="18" y="58" width="6" height="8" fill="#243659"/>
+          <polygon points="10,66 32,66 30,70 12,70" fill="#1B2A4A"/>
+        </g>
+
+        <!-- ── LAPTOP bas gauche ── -->
+        <g transform="translate(20,300)">
+          <!-- base clavier -->
+          <polygon points="0,28 60,0 120,28 60,56" fill="#1B2A4A"/>
+          <polygon points="120,28 144,16 84,44 60,56" fill="#243659"/>
+          <!-- écran ouvert -->
+          <polygon points="0,28 60,0 60,-52 0,-24" fill="#2E4470"/>
+          <polygon points="60,0 120,28 120,-24 60,-52" fill="#1B2A4A" opacity=".5"/>
+          <!-- contenu écran -->
+          <polygon points="5,22 58,-2 58,-46 5,-22" fill="#1E3A5F" opacity=".9"/>
+          <line x1="9" y1="-2" x2="54" y2="-20" stroke="rgba(200,169,110,.4)" stroke-width="1.5"/>
+          <line x1="9" y1="4" x2="44" y2="-12" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          <line x1="9" y1="10" x2="36" y2="-3" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          <!-- charnière -->
+          <line x1="0" y1="28" x2="120" y2="28" stroke="#243659" stroke-width="2"/>
+        </g>
+
+        <!-- ── SWITCH/ROUTEUR droit haut ── -->
+        <g transform="translate(305,100)">
+          <!-- corps -->
+          <polygon points="0,14 72,14 72,30 0,30" fill="#1B2A4A"/>
+          <polygon points="72,14 90,5 90,21 72,30" fill="#243659"/>
+          <polygon points="0,14 18,5 90,5 72,14" fill="#2E4470"/>
+          <!-- ports -->
+          <rect x="6" y="18" width="7" height="6" fill="#243659" rx="1"/>
+          <rect x="15" y="18" width="7" height="6" fill="#243659" rx="1"/>
+          <rect x="24" y="18" width="7" height="6" fill="#243659" rx="1"/>
+          <rect x="33" y="18" width="7" height="6" fill="#243659" rx="1"/>
+          <rect x="42" y="18" width="7" height="6" fill="#243659" rx="1"/>
+          <!-- LEDs -->
+          <circle cx="58" cy="21" r="3" fill="#2ECC71"/>
+          <circle cx="65" cy="21" r="3" fill="#5DADE2"/>
+          <!-- antennes wifi -->
+          <line x1="74" y1="5" x2="74" y2="-18" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+          <circle cx="74" cy="-20" r="3" fill="rgba(200,169,110,.8)"/>
+          <line x1="82" y1="5" x2="85" y2="-14" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+          <circle cx="85.5" cy="-16" r="2.5" fill="rgba(200,169,110,.6)"/>
+        </g>
+
+        <!-- ── TABLETTE droite bas ── -->
+        <g transform="translate(328,270)">
+          <!-- corps -->
+          <polygon points="0,0 42,0 42,64 0,64" fill="#1B2A4A"/>
+          <polygon points="42,0 54,-6 54,58 42,64" fill="#243659"/>
+          <polygon points="0,0 12,-6 54,-6 42,0" fill="#2E4470"/>
+          <!-- écran -->
+          <rect x="4" y="6" width="34" height="46" fill="#1E3A5F" opacity=".9"/>
+          <!-- icônes -->
+          <rect x="7" y="10" width="9" height="9" rx="1" fill="rgba(200,169,110,.3)"/>
+          <rect x="18" y="10" width="9" height="9" rx="1" fill="rgba(255,255,255,.12)"/>
+          <rect x="29" y="10" width="9" height="9" rx="1" fill="rgba(255,255,255,.12)"/>
+          <rect x="7" y="22" width="9" height="9" rx="1" fill="rgba(255,255,255,.12)"/>
+          <rect x="18" y="22" width="9" height="9" rx="1" fill="rgba(200,169,110,.2)"/>
+          <rect x="29" y="22" width="9" height="9" rx="1" fill="rgba(255,255,255,.12)"/>
+          <!-- barre status -->
+          <line x1="6" y1="38" x2="38" y2="38" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          <line x1="6" y1="43" x2="30" y2="43" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+          <!-- bouton home -->
+          <circle cx="21" cy="57" r="3.5" fill="#243659"/>
+          <circle cx="21" cy="57" r="1.5" fill="#2E4470"/>
+        </g>
+
+        <!-- ── CADENAS SÉCURITÉ haut centre ── -->
+        <g transform="translate(184,34)">
+          <rect x="6" y="22" width="40" height="32" rx="3" fill="#1B2A4A"/>
+          <rect x="6" y="22" width="40" height="7" rx="2" fill="#2E4470"/>
+          <path d="M14 22 L14 12 Q26 2 38 12 L38 22" stroke="#1B2A4A" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M14 22 L14 12 Q26 2 38 12 L38 22" stroke="#2E4470" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- keyhole -->
+          <circle cx="26" cy="34" r="7" fill="#243659"/>
+          <circle cx="26" cy="34" r="3" fill="#1E3A5F"/>
+          <rect x="23.5" y="34" width="5" height="10" fill="#243659"/>
+          <!-- brillance -->
+          <rect x="8" y="23" width="36" height="3" rx="1" fill="rgba(255,255,255,.06)"/>
+        </g>
+
+        <!-- ── SMARTPHONE bas centre ── -->
+        <g transform="translate(182,385)">
+          <polygon points="0,0 36,0 36,62 0,62" fill="#1B2A4A" rx="3"/>
+          <polygon points="36,0 48,-6 48,56 36,62" fill="#243659"/>
+          <polygon points="0,0 36,0 48,-6 12,-6" fill="#2E4470"/>
+          <!-- écran -->
+          <rect x="3" y="7" width="30" height="42" fill="#1E3A5F" opacity=".9"/>
+          <!-- notch caméra -->
+          <rect x="12" y="8" width="12" height="3" rx="1.5" fill="#243659"/>
+          <!-- signal bars -->
+          <rect x="7" y="13" width="3" height="10" rx="1" fill="rgba(200,169,110,.5)"/>
+          <rect x="12" y="16" width="3" height="7" rx="1" fill="rgba(200,169,110,.35)"/>
+          <rect x="17" y="18" width="3" height="5" rx="1" fill="rgba(200,169,110,.25)"/>
+          <!-- app icons -->
+          <rect x="7" y="28" width="8" height="8" rx="1.5" fill="rgba(255,255,255,.12)"/>
+          <rect x="17" y="28" width="8" height="8" rx="1.5" fill="rgba(200,169,110,.2)"/>
+          <rect x="7" y="38" width="8" height="8" rx="1.5" fill="rgba(255,255,255,.1)"/>
+          <rect x="17" y="38" width="8" height="8" rx="1.5" fill="rgba(255,255,255,.1)"/>
+          <!-- bouton home -->
+          <circle cx="18" cy="56" r="3" fill="#243659"/>
+        </g>
+
+        <!-- ── CLOUD bas droite ── -->
+        <g transform="translate(288,398)">
+          <ellipse cx="30" cy="18" rx="30" ry="18" fill="#1B2A4A"/>
+          <ellipse cx="14" cy="24" rx="16" ry="12" fill="#1B2A4A"/>
+          <ellipse cx="46" cy="24" rx="18" ry="13" fill="#1B2A4A"/>
+          <ellipse cx="30" cy="28" rx="30" ry="10" fill="#243659"/>
+          <!-- reflet -->
+          <ellipse cx="22" cy="14" rx="10" ry="5" fill="rgba(255,255,255,.06)"/>
+          <!-- icône upload -->
+          <line x1="30" y1="12" x2="30" y2="24" stroke="rgba(200,169,110,.6)" stroke-width="2"/>
+          <polyline points="25,17 30,12 35,17" stroke="rgba(200,169,110,.6)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- ── CÂBLE réseau bas gauche ── -->
+        <g transform="translate(100,410)">
+          <rect x="0" y="0" width="60" height="14" rx="2" fill="#1B2A4A"/>
+          <rect x="60" y="3" width="20" height="8" rx="1" fill="#243659"/>
+          <!-- connecteur RJ45 -->
+          <rect x="56" y="1" width="12" height="12" fill="#2E4470" rx="1"/>
+          <rect x="58" y="3" width="2" height="3" fill="#243659"/>
+          <rect x="62" y="3" width="2" height="3" fill="#243659"/>
+          <rect x="66" y="3" width="2" height="3" fill="#243659"/>
+          <!-- bandes -->
+          <rect x="14" y="0" width="3" height="14" fill="rgba(200,169,110,.2)"/>
+          <rect x="30" y="0" width="3" height="14" fill="rgba(200,169,110,.2)"/>
+          <rect x="46" y="0" width="3" height="14" fill="rgba(200,169,110,.2)"/>
+        </g>
+
+        <!-- ── NŒUD CENTRAL ── -->
+        <circle cx="210" cy="260" r="12" fill="#1B2A4A"/>
+        <circle cx="210" cy="260" r="7" fill="#2E4470"/>
+        <circle cx="210" cy="260" r="3" fill="rgba(200,169,110,.9)"/>
+        <!-- ping animé -->
+        <circle cx="210" cy="260" r="16" stroke="rgba(200,169,110,.3)" stroke-width="1.5" fill="none">
+          <animate attributeName="r" values="12;24;12" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════
+     §2 BTS SIO
+══════════════════════════════════════════ -->
+<section id="bts">
+  <div class="section-wrap">
+    <div class="eyebrow">Formation</div>
+    <h2>BTS SIO — Option SISR</h2>
+    <div class="rule"></div>
+
+    <!-- Établissement -->
+    <div style="background:var(--white);border-left:4px solid var(--accent);padding:1.6rem 2rem;margin-bottom:3px;position:relative;z-index:1;">
+      <p style="margin-bottom:.5rem;">Le <strong style="color:var(--ink);">BTS Services Informatiques aux Organisations</strong> est un diplôme d'État de niveau Bac+2 préparé en deux ans.</p>
+      <p style="margin-bottom:0;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#8896A5;letter-spacing:.06em;">ÉTABLISSEMENT — <strong style="color:var(--ink);">Lycée Polyvalent de Cachan</strong> &nbsp;·&nbsp; PROMO 2024–2026</p>
+    </div>
+
+    <!-- Mon parcours -->
+    <div style="background:var(--white);padding:1.8rem 2rem;margin-bottom:3px;position:relative;z-index:1;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;">Mon parcours</div>
+
+      <!-- Ligne de temps -->
+      <div style="position:relative;padding-left:2rem;">
+        <!-- Trait vertical -->
+        <div style="position:absolute;left:7px;top:6px;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),var(--rule));"></div>
+
+        <!-- Étape 1 : Bac général -->
+        <div style="position:relative;margin-bottom:2rem;">
+          <div style="position:absolute;left:-2rem;top:4px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--white);box-shadow:0 0 0 2px var(--accent);"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;">Bac général — 2024</div>
+          <div style="font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.4rem;">Baccalauréat Général <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:400;color:#8896A5;margin-left:.5rem;">Mention Européen</span></div>
+          <p style="font-size:.88rem;color:#4A5568;margin-bottom:.5rem;line-height:1.6;">Spécialités choisies : <strong style="color:var(--ink);">Mathématiques</strong> et <strong style="color:var(--ink);">NSI</strong> (Numérique et Sciences Informatiques). Ces deux spécialités m'ont permis de consolider une base solide en algorithmique, programmation Python et logique mathématique, directement réutilisée en BTS SIO.</p>
+          <span class="tag tk">Mathématiques</span>
+          <span class="tag tl">NSI — Numérique &amp; Sciences Informatiques</span>
+          <span class="tag ta">Mention Européen</span>
+        </div>
+
+        <!-- Étape 2 : Tronc commun -->
+        <div style="position:relative;margin-bottom:2rem;">
+          <div style="position:absolute;left:-2rem;top:4px;width:14px;height:14px;border-radius:50%;background:var(--ink);border:3px solid var(--white);box-shadow:0 0 0 2px var(--ink);"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);opacity:.5;margin-bottom:.4rem;">Semestre 1 — Tronc commun BTS SIO</div>
+          <div style="font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.4rem;">Socle commun SLAM / SISR</div>
+          <p style="font-size:.88rem;color:#4A5568;margin-bottom:0;line-height:1.6;">Premier semestre partagé entre tous les étudiants BTS SIO. Ce socle couvre les bases des réseaux, des systèmes, de la programmation et de la gestion de projet informatique.</p>
+        </div>
+
+        <!-- Étape 3 : SISR -->
+        <div style="position:relative;">
+          <div style="position:absolute;left:-2rem;top:4px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--white);box-shadow:0 0 0 2px var(--accent);"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;">Semestres 2, 3 &amp; 4 — Option SISR</div>
+          <div style="font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.4rem;">Spécialisation Infrastructure, Systèmes &amp; Réseaux</div>
+          <p style="font-size:.88rem;color:#4A5568;margin-bottom:.5rem;line-height:1.6;">J'ai choisi l'option <strong style="color:var(--ink);">SISR</strong> pour ma passion de la <strong style="color:var(--ink);">cybersécurité</strong> et la <strong style="color:var(--ink);">pérennité des métiers de l'infrastructure réseau</strong>, secteur en forte demande et en constante évolution technologique.</p>
+          <span class="tag tk">Cybersécurité</span>
+          <span class="tag tl">Administration réseaux</span>
+          <span class="tag tl">Virtualisation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matières et volume horaire -->
+    <div style="background:var(--white);padding:1.8rem 2rem;margin-bottom:3px;position:relative;z-index:1;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Matières &amp; volume horaire</div>
+
+      <!-- Tronc commun -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);">Tronc commun (toutes options)</div>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:1.4rem;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Culture générale et expression</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;white-space:nowrap;">2h / semaine</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Mathématiques</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h / semaine</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Anglais</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h / semaine</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Support et mise à disposition de services informatiques</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">4h / semaine</td>
+          </tr>
+          <tr>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Cybersécurité des services informatiques</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">3h / semaine</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Option SISR -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);">Option SISR spécifique</div>
+      <table style="width:100%;border-collapse:collapse;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Administration des systèmes et des réseaux</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">6h / semaine</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Gestion du patrimoine informatique</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">4h / semaine</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Réponse aux incidents et support</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">3h / semaine</td>
+          </tr>
+          <tr>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Projet personnel encadré (PPE)</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h / semaine</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+        <!-- Épreuves et coefficients -->
+    <div style="background:var(--white);padding:1.8rem 2rem;position:relative;z-index:1;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Épreuves &amp; coefficients</div>
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="background:var(--ink);">
+            <th style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:left;font-weight:500;">Épreuve</th>
+            <th style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;font-weight:500;">Forme</th>
+            <th style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;font-weight:500;">Durée</th>
+            <th style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);text-align:right;font-weight:500;">Coef.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--paper2);">
+            <td colspan="4" style="padding:.5rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;font-weight:600;">Épreuves obligatoires</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:500;">Culture générale et expression</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Écrit</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">4h</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);text-align:right;font-weight:700;">2</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:500;">Expression et communication en langue anglaise</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Écrit + Oral</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">2h + 20min</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);text-align:right;font-weight:700;">2</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:500;">Mathématiques pour l'informatique</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Écrit</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">55min</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);text-align:right;font-weight:700;">3</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:500;">Mathématiques pour l'informatique (partie algo)</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Oral</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">20min</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);text-align:right;font-weight:700;">3</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:500;">Culture économique, managériale et juridique pour l'informatique</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Écrit</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">4h</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);text-align:right;font-weight:700;">3</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);background:var(--paper);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:600;">E4 — Support et mise à disposition des services informatiques</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Oral</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">40min</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--accent);text-align:right;font-weight:700;">4</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);background:var(--paper);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:600;">E5 — Administration des systèmes et des réseaux (SISR)</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Oral</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">40min (1h30 prép.)</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--accent);text-align:right;font-weight:700;">4</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);background:var(--paper);">
+            <td style="padding:.75rem 1rem;font-size:.88rem;color:var(--ink);font-weight:600;">E6 — Cybersécurité des services informatiques (SISR/SLAM)</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">Écrit</td>
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:center;">4h</td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--accent);text-align:right;font-weight:700;">4</td>
+          </tr>
+          <tr style="background:var(--paper2);">
+            <td colspan="4" style="padding:.5rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;font-weight:600;">Épreuves facultatives</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.7rem 1rem;font-size:.85rem;color:var(--ink);">Langue vivante étrangère 2</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:#8896A5;text-align:center;">Oral</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:#8896A5;text-align:center;">20min</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:right;">—</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.7rem 1rem;font-size:.85rem;color:var(--ink);">Mathématiques approfondies</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:#8896A5;text-align:center;">Écrit</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:#8896A5;text-align:center;">2h</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:right;">—</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);">
+            <td style="padding:.7rem 1rem;font-size:.85rem;color:var(--ink);">Parcours de certification complémentaire</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:#8896A5;text-align:center;">Oral</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:#8896A5;text-align:center;">20min</td>
+            <td style="padding:.7rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:right;">—</td>
+          </tr>
+          <tr style="background:var(--ink);">
+            <td style="padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5);">Total coefficients obligatoires</td>
+            <td></td><td></td>
+            <td style="padding:.75rem 1rem;font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--white);text-align:right;font-weight:700;">25</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════
+     §3 EXPÉRIENCES
+══════════════════════════════════════════ -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="eyebrow">Parcours</div>
+    <h2>Expériences professionnelles</h2>
+    <div class="rule"></div>
+    <p style="margin-bottom:2rem;">Retrouvez l'ensemble de mon parcours dans mon <a href="cv.pdf" download style="font-family:'IBM Plex Mono',monospace;font-size:.8rem;">CV complet (PDF) →</a></p>
+
+    <!-- EXP 1 — REMPLACER -->
+    <div class="exp-item" style="position:relative;z-index:1;">
+      <div class="exp-date-col">
+        <div class="exp-date-txt">Mai.<br>2025<br>-<br>Juin<br>2025</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-title">Stage Technicien Supérieur administration systemes et réseaux </div>
+        <div class="exp-co"><a href="https://hopital-bicetre.aphp.fr/" target="_blank" rel="noopener">Hôpital APHP de Kremlin Bicêtre  ↗</a></div>
+        <p style="font-size:.9rem;margin-bottom:.8rem;">Observation ,Administration reseau et systeme, support utilisateur, deploiement de postes, Brassage</p>
+        <span class="tag tk">Cisco</span>
+        <span class="tag tl">Windows Server 2022</span>
+        <span class="tag tl">Active Directory</span>
+        <span class="tag tl">Wireshark</span>
+      </div>
+    </div>
+
+    <!-- EXP 2 — REMPLACER -->
+    <div class="exp-item" style="position:relative;z-index:1;">
+      <div class="exp-date-col">
+        <div class="exp-date-txt">Janvier<br>2026<br>-<br>Fevrier<br>2026</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-title">Stage Technicien Supérieur administration systemes et réseaux </div>
+        <div class="exp-co"><a href="https://hopital-bicetre.aphp.fr/" target="_blank" rel="noopener">Hôpital APHP de Kremlin Bicêtre  ↗</a></div>
+        <p style="font-size:.9rem;margin-bottom:.8rem;">Installation et configuration de serveurs, gestion des sauvegardes, virtualisation, Installation et configuration des nouvelles bornes wifi 6 , Fibre, support utilisateur (autonomie) ,Usage des outils APHP</p>
+        <span class="tag tk">Linux Debian</span>
+        <span class="tag tl">VMware</span>
+        <span class="tag tl">Bash</span>
+        <span class="tag tl">Proxmox</span>
+      </div>
+    </div>
+    <!-- DUPLIQUER pour d'autres expériences -->
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════
+     §4 COMPÉTENCES
+══════════════════════════════════════════ -->
+<section id="competences">
+  <div class="section-wrap">
+    <div class="eyebrow">Stack technique</div>
+    <h2>Compétences techniques &amp; sociales</h2>
+    <div class="rule"></div>
+
+    <!-- ── Techniques ── -->
+    <div class="sk-group">
+      <span class="sk-label">Réseaux</span>
+      <div class="sk-list">
+        <!-- REMPLACER selon votre niveau réel -->
+        <span class="sk-pill">TCP/IP</span>
+        <span class="sk-pill">VLAN / Trunking</span>
+        <span class="sk-pill">OSPF / RIP</span>
+        <span class="sk-pill">DNS / DHCP</span>
+        <span class="sk-pill">VPN (OpenVPN, IPsec)</span>
+        <span class="sk-pill">Wireshark</span>
+        <span class="sk-pill">Cisco IOS / Packet Tracer</span>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <span class="sk-label">Systèmes</span>
+      <div class="sk-list">
+        <span class="sk-pill">Linux (Debian, Ubuntu)</span>
+        <span class="sk-pill">Windows Server 2019/2022</span>
+        <span class="sk-pill">Active Directory / GPO</span>
+        <span class="sk-pill">Bash / PowerShell</span>
+        <span class="sk-pill">Virtualisation (VMware, Proxmox)</span>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <span class="sk-label">Sécurité</span>
+      <div class="sk-list">
+        <span class="sk-pill">Pare-feu (pfSense, iptables)</span>
+        <span class="sk-pill">Nmap / Nessus</span>
+        <span class="sk-pill">SIEM (ELK, Graylog)</span>
+        <span class="sk-pill">ISO 27001 (notions)</span>
+      </div>
+    </div>
+
+    <div class="sk-group" style="border-bottom:1px solid var(--rule);">
+      <span class="sk-label">Outils</span>
+      <div class="sk-list">
+        <span class="sk-pill">Git / GitHub</span>
+        <span class="sk-pill">Docker (notions)</span>
+        <span class="sk-pill">HTML / CSS (notions)</span>
+        <span class="sk-pill">Ticketing (GLPI)</span>
+      </div>
+    </div>
+
+    <!-- ── Soft skills ── -->
+    <div class="soft-title-row">
+      <span class="sk-label">Soft skills</span>
+    </div>
+
+    <div class="soft-cards">
+      <!-- REMPLACER selon vos vraies qualités -->
+      <div class="soft-card">
+        <div class="soft-card-title">Travail en équipe</div>
+        <div class="soft-card-sub">Projets collectifs BTS</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-card-title">Curiosité technique</div>
+        <div class="soft-card-sub">Veille &amp; auto-formation</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-card-title">Rigueur</div>
+        <div class="soft-card-sub">Documentation soignée</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-card-title">Communication</div>
+        <div class="soft-card-sub">Relation client / support</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-card-title">Réactivité</div>
+        <div class="soft-card-sub">Incidents &amp; urgences</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-card-title">Autonomie</div>
+        <div class="soft-card-sub">Apprentissage continu</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════
+     §5 PROJETS
+══════════════════════════════════════════ -->
+<section id="projets">
+  <div class="section-wrap">
+    <div class="eyebrow">Réalisations</div>
+    <h2>Projets</h2>
+    <div class="rule"></div>
+
+    <!-- PROJET 1 — REMPLACER -->
+    <div class="proj-item" style="position:relative;z-index:1;">
+      <div class="proj-header">
+        <div>
+          <h3>Attaque et Défense d'un réseau WIFI</h3>
+          <div class="proj-meta">MLIF </div>
+        </div>
+        <div class="proj-links">
+          <a href="#" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="rapport-projet1.pdf" download>Rapport ↗</a>
+        </div>
+      </div>
+      <p style="font-size:.9rem;margin-bottom:.8rem;">Mise en place d'un réseau wifi dans le but de la mise en place de 3 attaques :
+-par rejeu ARP
+-par force brute sur un mot de passe 
+-déchiffrement d'un clé WEP </p>
+      <span class="tag tk">Cisco Packet Tracer</span><span class="tag tl">VLAN</span><span class="tag tl">Pare-feu</span><span class="tag tl">DHCP / DNS</span>
+    </div>
+
+    <!-- PROJET 2 -->
+    <div class="proj-item" style="position:relative;z-index:1;">
+      <div class="proj-header">
+        <div>
+          <h3>Audit de securite d'un reseau local</h3>
+          <div class="proj-meta">Projet personnel 2024</div>
+        </div>
+        <div class="proj-links">
+          <a href="#" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <p style="font-size:.9rem;margin-bottom:.8rem;">Realisation d'un audit de securite : scan de vulnerabilites (Nmap, Nessus), analyse des flux reseau (Wireshark), rapport de preconisations.</p>
+      <span class="tag tk">Nmap</span><span class="tag tl">Wireshark</span><span class="tag tl">Nessus</span><span class="tag tl">Linux</span>
+    </div>
+
+    <!-- PROJET 3 -->
+    <div class="proj-item" style="position:relative;z-index:1;">
+      <div class="proj-header">
+        <div>
+          <h3>Deploiement d'un serveur Proxmox</h3>
+          <div class="proj-meta">Projet lab maison 2023</div>
+        </div>
+        <div class="proj-links">
+          <a href="#" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <p style="font-size:.9rem;margin-bottom:.8rem;">Installation d'un hyperviseur Proxmox VE, deploiement de VMs (pfSense, Debian, Windows Server), sauvegardes automatisees.</p>
+      <span class="tag tk">Proxmox VE</span><span class="tag tl">pfSense</span><span class="tag tl">Bash</span><span class="tag tl">Windows Server</span>
+    </div>
+    <!-- DUPLIQUER pour d'autres projets -->
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════
+     §6 VEILLE
+══════════════════════════════════════════ -->
+<section id="veille">
+  <div class="section-wrap">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;position:relative;z-index:1;">
+      <div style="flex:1;min-width:280px;">
+        <div class="eyebrow">Actualité</div>
+        <h2>Veille technologique</h2>
+        <div class="rule"></div>
+      </div>
+      <!-- Petite illustration isométrique réseau -->
+      <svg width="160" height="110" viewBox="0 0 160 110" fill="none" aria-hidden="true" style="flex-shrink:0;opacity:.75;margin-top:1rem;">
+        <g stroke="rgba(200,169,110,.3)" stroke-width="1" stroke-dasharray="3 4">
+          <line x1="80" y1="55" x2="28" y2="28"/><line x1="80" y1="55" x2="132" y2="28"/>
+          <line x1="80" y1="55" x2="26" y2="82"/><line x1="80" y1="55" x2="134" y2="82"/>
+        </g>
+        <!-- PC gauche -->
+        <g transform="translate(4,10)">
+          <polygon points="0,8 26,8 26,26 0,26" fill="#1B2A4A"/>
+          <polygon points="26,8 34,4 34,22 26,26" fill="#243659"/>
+          <polygon points="0,8 8,4 34,4 26,8" fill="#2E4470"/>
+          <rect x="2" y="10" width="22" height="14" fill="#1E3A5F" opacity=".9"/>
+          <line x1="5" y1="15" x2="22" y2="15" stroke="rgba(200,169,110,.4)" stroke-width="1.2"/>
+          <line x1="5" y1="19" x2="18" y2="19" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          <rect x="10" y="26" width="6" height="4" fill="#243659"/>
+          <rect x="6" y="30" width="14" height="2" fill="#1B2A4A"/>
+        </g>
+        <!-- Switch droite -->
+        <g transform="translate(108,8)">
+          <polygon points="0,8 40,8 40,18 0,18" fill="#1B2A4A"/>
+          <polygon points="40,8 50,3 50,13 40,18" fill="#243659"/>
+          <polygon points="0,8 10,3 50,3 40,8" fill="#2E4470"/>
+          <rect x="4" y="11" width="5" height="4" fill="#2E4470" rx="1"/>
+          <rect x="11" y="11" width="5" height="4" fill="#2E4470" rx="1"/>
+          <rect x="18" y="11" width="5" height="4" fill="#2E4470" rx="1"/>
+          <circle cx="34" cy="13" r="2" fill="#2ECC71"/>
+          <circle cx="38" cy="13" r="2" fill="rgba(200,169,110,.8)"/>
+        </g>
+        <!-- Serveur bas gauche -->
+        <g transform="translate(4,62)">
+          <polygon points="0,8 26,0 52,8 26,16" fill="#1B2A4A"/>
+          <polygon points="52,8 62,3 62,11 52,16" fill="#243659"/>
+          <line x1="5" y1="10" x2="46" y2="10" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          <circle cx="44" cy="8" r="2.5" fill="#2ECC71"/>
+        </g>
+        <!-- Cadenas bas droite -->
+        <g transform="translate(110,60)">
+          <rect x="3" y="14" width="24" height="18" rx="2" fill="#1B2A4A"/>
+          <rect x="3" y="14" width="24" height="5" rx="1" fill="#2E4470"/>
+          <path d="M8 14 L8 9 Q15 3 22 9 L22 14" stroke="#1B2A4A" stroke-width="4" fill="none"/>
+          <path d="M8 14 L8 9 Q15 3 22 9 L22 14" stroke="#2E4470" stroke-width="2.5" fill="none"/>
+          <circle cx="15" cy="22" r="4" fill="#243659"/>
+          <circle cx="15" cy="22" r="1.5" fill="rgba(200,169,110,.7)"/>
+        </g>
+        <!-- Nœud central -->
+        <circle cx="80" cy="55" r="8" fill="#1B2A4A"/>
+        <circle cx="80" cy="55" r="4.5" fill="#2E4470"/>
+        <circle cx="80" cy="55" r="2" fill="rgba(200,169,110,.9)"/>
+      </svg>
+    </div>
+
+    <div style="background:var(--white);border-left:4px solid var(--accent);padding:1.4rem 2rem;margin-bottom:2px;position:relative;z-index:1;">
+      <h3 style="margin-bottom:.4rem;">Thème — Cybersécurité des infrastructures réseau</h3>
+      <!-- REMPLACER : adaptez à votre vrai thème -->
+      <p style="margin-bottom:0;font-size:.9rem;"></p>
+    </div>
+
+    <div style="position:relative;z-index:1;">
+      <div class="veille-year">— 2023 — Première année</div>
+
+      <!-- REMPLACER : vos vraies actualités -->
+      <div class="ve">
+        <h3 style="margin-bottom:.4rem;">Montée en puissance des attaques sur les équipements réseau (CVE Cisco)</h3>
+        <p style="font-size:.9rem;margin-bottom:.7rem;">En 2023, de nombreuses vulnérabilités critiques ont été découvertes dans les routeurs Cisco IOS/IOS-XE, notamment la CVE-2023-20198 permettant la création de comptes admin à distance. Cette faille a rappelé l'importance des mises à jour firmware et du principe du moindre privilège.</p>
+        <span class="tag tk">CVE-2023-20198</span><span class="tag tl">Cisco IOS-XE</span><span class="tag tl">Zero-day</span>
+      </div>
+      <div class="ve">
+        <h3 style="margin-bottom:.4rem;">Généralisation de Zero Trust Network Access (ZTNA)</h3>
+        <p style="font-size:.9rem;margin-bottom:.7rem;">Le modèle Zero Trust s'impose comme alternative aux VPN traditionnels pour les accès distants. Les solutions ZTNA vérifient en continu l'identité, le contexte et l'état de conformité du terminal avant d'autoriser chaque connexion.</p>
+        <span class="tag tk">Zero Trust</span><span class="tag tl">ZTNA</span><span class="tag tl">VPN</span>
+      </div>
+
+      <div class="veille-year">— 2024 — Deuxième année</div>
+
+      <div class="ve">
+        <h3 style="margin-bottom:.4rem;">SIEM nouvelle génération et intelligence artificielle</h3>
+        <p style="font-size:.9rem;margin-bottom:.7rem;">Les solutions SIEM (Splunk, Microsoft Sentinel, Elastic SIEM) intègrent désormais des modèles de machine learning pour la détection comportementale (UEBA). En 2024, l'IA permet de réduire les faux positifs et d'automatiser la réponse à incident via des playbooks SOAR.</p>
+        <span class="tag tk">SIEM</span><span class="tag tl">IA / ML</span><span class="tag tl">SOAR</span><span class="tag tl">Splunk</span>
+      </div>
+      <div class="ve">
+        <h3 style="margin-bottom:.4rem;">SD-WAN et sécurisation des réseaux hybrides</h3>
+        <p style="font-size:.9rem;margin-bottom:.7rem;">La généralisation du télétravail a accéléré l'adoption du SD-WAN. Les architectures SASE (Secure Access Service Edge) fusionnent réseau et sécurité dans le cloud, offrant un contrôle centralisé des flux pour les entreprises distribuées.</p>
+        <span class="tag tk">SD-WAN</span><span class="tag tl">SASE</span><span class="tag tl">Cloud Security</span>
+      </div>
+
+      <div class="rss">
+        <div>
+          <div class="rss-title">Flux RSS — Actualisation continue</div>
+          <!-- REMPLACER : vos flux réels -->
+          <div class="rss-sub">Sources suivies : <strong>CERT-FR, Korben, The Hacker News</strong></div>
+        </div>
+        <div class="rss-links">
+          <a href="https://www.cert.ssi.gouv.fr/feed/" target="_blank" rel="noopener">CERT-FR ↗</a>
+          <a href="https://feeds.feedburner.com/TheHackersNews" target="_blank" rel="noopener">Hacker News ↗</a>
+          <a href="https://korben.info/feed" target="_blank" rel="noopener">Korben ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════
+     §7 CONTACT
+══════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="eyebrow">Écrire</div>
+    <h2>Contact</h2>
+    <div class="rule"></div>
+
+    <div class="contact-grid">
+      <div class="ci">
+        <h3>Envoyez-moi un message</h3>
+        <p>Disponible pour un stage ou une alternance. Toute proposition est la bienvenue.</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;margin-bottom:0;">Ce formulaire ne collecte aucune donnée personnelle.</p>
+        <div class="social-links">
+          <!-- REMPLACER : vos profils -->
+          <a href="#" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+          <a href="#" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="fnote">Ce formulaire ne demande ni nom, ni email, ni téléphone.</div>
+        <div class="fg">
+          <label for="sujet">Sujet</label>
+          <select id="sujet">
+            <option value="">— Choisissez —</option>
+            <option>Proposition de stage</option>
+            <option>Proposition d'alternance</option>
+            <option>Collaboration sur un projet</option>
+            <option>Question technique</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="fg"><label for="contexte">Contexte (facultatif)</label><input type="text" id="contexte" placeholder="Entreprise, secteur, structure..."></div>
+        <div class="fg"><label for="message">Message</label><textarea id="message" placeholder="Décrivez votre demande ou votre projet..."></textarea></div>
+        <div class="fg"><label for="moyen">Comment me répondre ? (facultatif)</label><input type="text" id="moyen" placeholder="Via LinkedIn, email indirect, etc."></div>
+        <button class="fsub" onclick="submitForm()">Envoyer le message</button>
+        <div class="fok" id="fok">Message envoyé — Je vous recontacterai dès que possible.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <!-- REMPLACER : votre prénom/nom -->
+    <div class="footer-name">Rostem <em style="font-style:italic;opacity:.7;">Belalia</em></div>
+    <div class="footer-meta">
+      BTS SIO SISR &nbsp;<span class="footer-accent">·</span>&nbsp;
+      Portfolio &nbsp;<span class="footer-accent">·</span>&nbsp;
+      <span id="year"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a');
+function upNav(){
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<=100)cur=s.id;});
+  links.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
+  });
+}
+window.addEventListener('scroll',upNav,{passive:true});
+upNav();
+function submitForm(){
+  var s=document.getElementById('sujet').value,m=document.getElementById('message').value;
+  if(!s||!m){alert('Merci de renseigner au moins le sujet et votre message.');return;}
+  document.getElementById('fok').style.display='block';
+  ['sujet','contexte','message','moyen'].forEach(id=>document.getElementById(id).value='');
+}
+</script>
+</body>
+</html>
