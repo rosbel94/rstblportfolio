@@ -128,7 +128,7 @@ nav::before{
 .nav-links a.active{color:var(--accent);border-bottom-color:var(--accent);}
 
 /* ════════════════════════════════════════════
-   LAYOUT GÉNÉRAL
+   LAYOUT GÉNÉRAL — navigation par pages
 ════════════════════════════════════════════ */
 main{padding-top:var(--nav);}
 .section-wrap{
@@ -138,6 +138,55 @@ main{padding-top:var(--nav);}
 section{
   border-bottom:1px solid var(--rule);
   position:relative;overflow:hidden;
+  /* Page par page */
+  display:none;
+  min-height:calc(100vh - var(--nav));
+  animation:pagein .35s ease;
+}
+section.active-page{display:block;}
+@keyframes pagein{
+  from{opacity:0;transform:translateY(18px);}
+  to{opacity:1;transform:translateY(0);}
+}
+/* Séparateurs masqués */
+.sep{display:none;}
+
+/* ── Barre de progression pages ── */
+.page-progress{
+  position:fixed;bottom:0;left:0;right:0;z-index:99;
+  height:3px;background:var(--rule);
+}
+.page-progress-bar{
+  height:100%;background:var(--accent);
+  transition:width .3s ease;
+}
+
+/* ── Contrôles prev/next ── */
+.page-controls{
+  position:fixed;bottom:1.8rem;right:2rem;z-index:99;
+  display:flex;align-items:center;gap:8px;
+}
+.page-btn{
+  width:38px;height:38px;
+  background:var(--ink);color:var(--white);
+  border:none;cursor:pointer;
+  font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,opacity .2s;
+  font-family:'IBM Plex Mono',monospace;
+}
+.page-btn:hover{background:var(--ink3);}
+.page-btn:disabled{opacity:.25;cursor:default;}
+.page-counter{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.65rem;font-weight:500;
+  letter-spacing:.1em;
+  color:var(--ink);
+  background:var(--white);
+  border:1px solid var(--rule);
+  padding:0 10px;height:38px;
+  display:flex;align-items:center;
+}
 }
 
 /* Labels & titres */
@@ -1592,6 +1641,16 @@ footer::after{
 
 </main>
 
+<!-- Barre de progression -->
+<div class="page-progress"><div class="page-progress-bar" id="progressBar"></div></div>
+
+<!-- Contrôles prev / next -->
+<div class="page-controls">
+  <button class="page-btn" id="btnPrev" onclick="changePage(-1)" title="Page précédente">&#8592;</button>
+  <div class="page-counter"><span id="pageNum">1</span>&nbsp;/&nbsp;<span id="pageTotal">7</span></div>
+  <button class="page-btn" id="btnNext" onclick="changePage(1)" title="Page suivante">&#8594;</button>
+</div>
+
 <!-- ══════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════ -->
@@ -1609,18 +1668,70 @@ footer::after{
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-const secs = document.querySelectorAll('section[id]');
+
+const PAGES = ['intro','bts','experience','competences','projets','veille','contact'];
+let current = 0;
+
 const links = document.querySelectorAll('.nav-links a');
-function upNav(){
-  let cur='';
-  secs.forEach(s=>{if(s.getBoundingClientRect().top<=100)cur=s.id;});
-  links.forEach(a=>{
-    a.classList.remove('active');
-    if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
+
+function showPage(idx, animate){
+  // Masquer toutes les sections
+  PAGES.forEach(id => {
+    const s = document.getElementById(id);
+    if(s) s.classList.remove('active-page');
   });
+
+  // Afficher la page cible
+  current = idx;
+  const target = document.getElementById(PAGES[current]);
+  if(target){
+    target.classList.add('active-page');
+    window.scrollTo(0,0);
+  }
+
+  // Nav active
+  links.forEach(a => {
+    a.classList.remove('active');
+    if(a.getAttribute('href') === '#' + PAGES[current]) a.classList.add('active');
+  });
+
+  // Compteur
+  document.getElementById('pageNum').textContent = current + 1;
+  document.getElementById('pageTotal').textContent = PAGES.length;
+
+  // Barre de progression
+  document.getElementById('progressBar').style.width =
+    ((current + 1) / PAGES.length * 100) + '%';
+
+  // Boutons prev/next
+  document.getElementById('btnPrev').disabled = current === 0;
+  document.getElementById('btnNext').disabled = current === PAGES.length - 1;
 }
-window.addEventListener('scroll',upNav,{passive:true});
-upNav();
+
+function changePage(dir){
+  const next = current + dir;
+  if(next >= 0 && next < PAGES.length) showPage(next, true);
+}
+
+// Clic sur liens nav
+links.forEach((a, i) => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const href = a.getAttribute('href').replace('#','');
+    const idx = PAGES.indexOf(href);
+    if(idx >= 0) showPage(idx);
+  });
+});
+
+// Navigation clavier
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown') changePage(1);
+  if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   changePage(-1);
+});
+
+// Init
+showPage(0);
+
 function submitForm(){
   var s=document.getElementById('sujet').value,m=document.getElementById('message').value;
   if(!s||!m){alert('Merci de renseigner au moins le sujet et votre message.');return;}
