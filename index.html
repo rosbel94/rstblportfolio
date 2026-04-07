@@ -1617,36 +1617,29 @@ footer::after{
         <h2>Veille technologique</h2>
         <div class="rule"></div>
       </div>
-      <!-- Indicateur live -->
       <div style="display:flex;align-items:center;gap:8px;margin-top:1.2rem;flex-shrink:0;">
-        <span id="veille-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;animation:pulse-dot 2s infinite;"></span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#8896A5;">Flux en direct</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;animation:pulse-dot 2s infinite;"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#8896A5;">30 articles · Mis à jour</span>
       </div>
     </div>
 
     <!-- Thème -->
     <div style="background:var(--white);border-left:4px solid var(--accent);padding:1.4rem 2rem;margin-bottom:1.5rem;position:relative;z-index:1;">
       <h3 style="margin-bottom:.4rem;">Thème — Cybersécurité des infrastructures réseau</h3>
-      <p style="margin-bottom:0;font-size:.9rem;color:#4A5568;">Suivi des dernières vulnérabilités, alertes CERT, outils de détection et bonnes pratiques de durcissement des infrastructures SISR.</p>
+      <p style="margin-bottom:0;font-size:.9rem;color:#4A5568;">Suivi des dernières vulnérabilités, failles CVE, techniques d'attaque et parades pour les infrastructures SISR — réseaux, systèmes, identité et cloud.</p>
     </div>
 
-    <!-- Sélecteur de source -->
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.4rem;position:relative;z-index:1;">
-      <button class="rss-src-btn active" data-src="cert" onclick="loadFeed('cert',this)">CERT-FR</button>
-      <button class="rss-src-btn" data-src="thn"  onclick="loadFeed('thn',this)">The Hacker News</button>
-      <button class="rss-src-btn" data-src="korben" onclick="loadFeed('korben',this)">Korben</button>
+    <!-- Filtres catégories -->
+    <div id="veille-filters" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.4rem;position:relative;z-index:1;">
+      <button class="rss-src-btn active" onclick="filterVeille('all',this)">Tout</button>
+      <button class="rss-src-btn" onclick="filterVeille('reseau',this)">🛡️ Réseau &amp; Bordure</button>
+      <button class="rss-src-btn" onclick="filterVeille('systeme',this)">💻 Systèmes &amp; Serveurs</button>
+      <button class="rss-src-btn" onclick="filterVeille('identite',this)">🔑 Identité &amp; AD</button>
+      <button class="rss-src-btn" onclick="filterVeille('cloud',this)">☁️ Cloud &amp; Apps</button>
     </div>
 
-    <!-- Zone articles -->
-    <div id="rss-feed" style="position:relative;z-index:1;"></div>
-
-    <!-- Bouton actualiser -->
-    <div style="margin-top:1.2rem;position:relative;z-index:1;">
-      <button onclick="reloadFeed()" style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--ink);border:1px solid var(--rule);padding:8px 16px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;">
-        ↺ Actualiser
-      </button>
-      <span id="last-update" style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:#8896A5;margin-left:12px;"></span>
-    </div>
+    <!-- Articles -->
+    <div id="veille-articles" style="position:relative;z-index:1;display:flex;flex-direction:column;gap:.8rem;"></div>
 
   </div>
 </section>
@@ -1729,12 +1722,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 var PAGES = ['intro','bts','experience','competences','projets','veille','contact'];
 var current = 0;
-var currentSrc = 'cert';
-var FEEDS = {
-  cert:   { url:'https://www.cert.ssi.gouv.fr/feed/', label:'CERT-FR' },
-  thn:    { url:'https://feeds.feedburner.com/TheHackersNews', label:'The Hacker News' },
-  korben: { url:'https://korben.info/feed', label:'Korben' }
-};
 
 function showPage(idx){
   PAGES.forEach(function(id){
@@ -1759,8 +1746,7 @@ function showPage(idx){
   if(bp) bp.disabled=(current===0);
   if(bn) bn.disabled=(current===PAGES.length-1);
   if(PAGES[current]==='veille'){
-    var ab=document.querySelector('.rss-src-btn.active');
-    loadFeed(currentSrc, ab);
+    renderArticles('all');
   }
 }
 
@@ -1783,58 +1769,58 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowLeft' ||e.key==='ArrowUp')   changePage(-1);
 });
 
-function fmtDate(d){
-  try{ return new Date(d).toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'}); }
-  catch(e){ return d||''; }
-}
-function stripHtml(html){
-  var t=document.createElement('div'); t.innerHTML=html||'';
-  var txt=(t.textContent||'').trim();
-  return txt.length>200 ? txt.slice(0,200)+'…' : txt;
-}
-function renderError(){
-  var f=document.getElementById('rss-feed');
-  if(f) f.innerHTML='<div class="rss-err" style="text-align:left;padding:1.4rem 1.6rem;border:1px solid var(--rule);">'
-    +'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;">Flux RSS</div>'
-    +'<p style="font-size:.88rem;color:#4A5568;margin-bottom:.4rem;">Le chargement des flux en direct nécessite que le portfolio soit hébergé sur un serveur web.</p>'
-    +'<p style="font-family:\'IBM Plex Mono\',monospace;font-size:.62rem;color:#9BA8B8;margin-bottom:0;">Sources suivies : CERT-FR · The Hacker News · Korben</p>'
-    +'</div>';
-}
-function renderItems(items,label){
-  var f=document.getElementById('rss-feed');
-  if(!f) return;
-  if(!items||!items.length){ renderError(); return; }
-  f.innerHTML=items.slice(0,8).map(function(item){
-    var title=item.title||'Sans titre';
-    var link=item.link||item.url||'#';
-    var date=fmtDate(item.pubDate||item.published);
-    var desc=stripHtml(item.description||item.summary||item.content||'');
-    return '<div class="rss-card">'
-      +'<div class="rss-card-source">'+label+'</div>'
-      +'<div class="rss-card-title"><a href="'+link+'" target="_blank" rel="noopener">'+title+'</a></div>'
-      +'<div class="rss-card-date">'+date+'</div>'
-      +'<p class="rss-card-desc">'+desc+'</p>'
-      +'</div>';
+var ARTICLES = [{"cat": "reseau", "titre": "Bypass Isolation Wi-Fi (L2 Attack)", "detail": "Exploite une faille dans la gestion des files d'attente de paquets des puces Wi-Fi. Un attaquant envoie des trames de sommeil au point d'acces pour forcer la mise en cache des paquets d'une victime, puis les recupere en usurpant son adresse MAC.", "parade": "Desactiver le Target Wake Time (TWT), utiliser WPA3-Enterprise et isoler les clients via des VLANs dynamiques."}, {"cat": "reseau", "titre": "Faille RCE F5 BIG-IP (CVE-2026-53521)", "detail": "Une injection de commande dans l'interface iControl REST permet d'executer du code avec les privileges root. Comme cet equipement gere souvent le dechiffrement SSL, l'attaquant voit tout le trafic en clair.", "parade": "Restreindre l'acces a l'interface de management au seul VLAN d'administration (OOB) et appliquer le patch constructeur."}, {"cat": "reseau", "titre": "Cisco Catalyst SD-WAN (CVE-2026-20127)", "detail": "Un attaquant peut envoyer un paquet malforme au gestionnaire de tunnel (vSmart) pour reinitialiser les cles de chiffrement IPsec et intercepter les flux entre les sites distants.", "parade": "Mise a jour du controleur vManage et activation de l'authentification mutuelle par certificats."}, {"cat": "reseau", "titre": "Fortinet FortiGate Auth Bypass", "detail": "Une erreur de logique dans le traitement des requetes HTTP du portail captif VPN SSL permet de bypasser l'authentification en ajoutant un header specifique.", "parade": "Desactivation du VPN SSL si non utilise (preferer IPsec) et mise en place d'un MFA externe."}, {"cat": "reseau", "titre": "Ivanti VPN Zero-Day", "detail": "Exploitation d'une vulnerabilite de type Path Traversal permettant de lire n'importe quel fichier systeme, y compris les fichiers de configuration contenant les secrets de connexion.", "parade": "Utilisation d'un EDR sur la passerelle et monitoring strict des logs de connexion."}, {"cat": "reseau", "titre": "Attaque BGP Hijacking", "detail": "Un routeur pirate annonce qu'il possede le chemin le plus court vers une plage d'adresses IP appartenant a une autre entreprise, detournant ainsi tout le trafic mondial destine a cette cible.", "parade": "Implementation du protocole RPKI (Resource Public Key Infrastructure) pour signer numeriquement les annonces de routes."}, {"cat": "reseau", "titre": "Botnet IoT Titan (DDoS)", "detail": "Utilise des vulnerabilites connues sur des cameras et routeurs domestiques pour creer une armee de zombies envoyant des requetes synchronisees (TCP SYN Flood) pour saturer les tables d'etats des pare-feu.", "parade": "Mise en place de solutions anti-DDoS (Cloudflare ou Arbor Networks) et filtrage Geo-IP."}, {"cat": "reseau", "titre": "Faille Proxy Inverse — HTTP Request Smuggling", "detail": "Permet de glisser une deuxieme requete cachee a l'interieur d'une premiere, trompant le serveur backend sur l'identite de l'emetteur.", "parade": "Uniformiser les configurations entre le proxy et le serveur web (ex: forcer HTTP/2)."}, {"cat": "systeme", "titre": "RansomHub sur VMware ESXi", "detail": "Le groupe accede a l'ESXi via SSH ou une faille vCenter, puis lance un binaire Linux qui chiffre les fichiers .vmdk pendant que les VM sont allumees ou suspendues.", "parade": "Desactiver SSH sur les hotes ESXi, utiliser le mode Lockdown et avoir des sauvegardes immuables hors-ligne."}, {"cat": "systeme", "titre": "Kernel Linux LPE (Local Privilege Escalation)", "detail": "Une faille de type Use-After-Free dans la pile reseau du noyau Linux permet a un utilisateur local d'obtenir un shell root.", "parade": "Patching regulier (Livepatch) et durcissement du noyau (AppArmor/SELinux)."}, {"cat": "systeme", "titre": "Vulnerabilite Microsoft Exchange", "detail": "Exploitation de la serialisation non securisee dans l'API de PowerShell distant pour executer du code sur le serveur de messagerie.", "parade": "Bloquer les ports de management Exchange depuis l'exterieur et migrer vers des solutions avec MFA moderne."}, {"cat": "systeme", "titre": "vCenter RCE (Remote Code Execution)", "detail": "Un bug dans le service de mise a jour de vCenter permet d'injecter des commandes sans etre connecte a l'interface d'administration.", "parade": "Isoler le vCenter dans un VLAN d'administration ultra-restreint sans acces Internet."}, {"cat": "systeme", "titre": "Faille Microcode CPU (Spectre-like)", "detail": "Utilise l'execution speculative des processeurs pour lire des secrets (mots de passe, cles de chiffrement) stockes dans la memoire cache du processeur par d'autres processus.", "parade": "Mises a jour du BIOS/UEFI et desactivation de l'Hyper-Threading sur les serveurs critiques."}, {"cat": "systeme", "titre": "Bruteforce RDP (Port 3389)", "detail": "Script automatise testant des milliers de combinaisons de comptes/mots de passe sur les acces Bureau a distance ouverts sur Internet.", "parade": "Utiliser une passerelle RD Gateway, fermer le port 3389 sur le pare-feu et activer le blocage apres 3 echecs (Fail2Ban/GPO)."}, {"cat": "systeme", "titre": "Veeam Credential Theft", "detail": "Un attaquant deja present sur le reseau extrait la cle de chiffrement locale pour dechiffrer les comptes SQL et Admin stockes dans la config de sauvegarde.", "parade": "Chiffrer la base de donnees Veeam avec un mot de passe fort et limiter les privileges du compte de service."}, {"cat": "identite", "titre": "Kerberoasting AD", "detail": "Un utilisateur du domaine demande un ticket de service pour un compte (ex: SQL) et tente de cracker le mot de passe de ce compte hors-ligne a partir du ticket.", "parade": "Utiliser des mots de passe tres longs pour les comptes de service (gMSA) et surveiller les evenements d'audit 4769."}, {"cat": "identite", "titre": "Privilege Escalation AD — Certificats (ADCS)", "detail": "Exploitation de mauvaises configurations dans les services de certificats AD (ADCS) pour s'auto-delivrer un certificat d'administrateur du domaine.", "parade": "Auditer les modeles de certificats (Templates) avec des outils comme PurpleKnight."}, {"cat": "identite", "titre": "Phishing IA — Spear Phishing", "detail": "Utilisation d'outils comme WormGPT pour creer des emails imitant parfaitement le style d'ecriture du DSI, demandant une modification urgente de configuration DNS ou un virement.", "parade": "Formation des utilisateurs (Phishing simulation) et protocoles de validation humaine pour les actions critiques."}, {"cat": "identite", "titre": "Quishing (QR Code Phishing)", "detail": "L'utilisateur scanne un QR code qui mene a une page de login Microsoft 365. Le lien est souvent offusque pour tromper les filtres antispam classiques.", "parade": "Solution de filtrage URL sur mobile (MDE) et sensibilisation a ne pas scanner de QR codes inconnus."}, {"cat": "identite", "titre": "Leak de cles SSH sur GitHub", "detail": "Un developpeur oublie sa cle privee ou un token d'API dans un script et le push sur un depot public. Des bots scannent GitHub en continu pour les voler.", "parade": "Utilisation de Secrets Scanning et rotation automatique des cles."}, {"cat": "cloud", "titre": "Malwares sur Docker Hub", "detail": "Des images nommees alpine-linux-optimized contiennent en realite un binaire cache qui s'active apres 24h pour miner du Monero.", "parade": "Utiliser uniquement des images officielles Verified Publisher et scanner les vulnerabilites des images (Trivy)."}, {"cat": "cloud", "titre": "Poisoning de modeles IA d'entreprise", "detail": "En injectant des donnees malveillantes dans la base de connaissances d'un chatbot interne, on le force a donner des instructions de securite erronees aux employes.", "parade": "Nettoyage des donnees d'entrainement et filtrage des entrees utilisateurs (Prompt Injection)."}, {"cat": "cloud", "titre": "Attaque Supply Chain (NPM/Python)", "detail": "Un attaquant prend le controle d'une petite bibliotheque utilisee par des milliers d'autres et y insere une backdoor (porte derobee).", "parade": "Utiliser un proxy de depot prive (Artifactory) qui bloque les nouvelles versions non validees."}, {"cat": "cloud", "titre": "Injection SQL sur SAP", "detail": "Manipulation des entrees dans les formulaires de gestion de stock pour extraire la base de donnees des employes.", "parade": "Utiliser des requetes preparees et mettre en place un WAF (Web Application Firewall)."}, {"cat": "cloud", "titre": "Fuite de Certificats SSL (PKI)", "detail": "Vol de la cle privee d'une autorite de certification intermediaire permettant de signer des certificats pour n'importe quel domaine (Man-in-the-Middle).", "parade": "Surveillance des journaux de transparence des certificats (Certificate Transparency)."}, {"cat": "cloud", "titre": "DDoS Applicatif (Layer 7)", "detail": "Simule des comportements humains lents (Slowloris) pour occuper toutes les connexions d'un serveur web sans saturer la bande passante.", "parade": "Limiter le nombre de connexions par IP et reduire les delais d'attente (timeouts) serveurs."}, {"cat": "cloud", "titre": "Cloud Buckets S3 Ouverts", "detail": "Mauvaise configuration d'un stockage Amazon S3 qui laisse des gigaoctets de donnees confidentielles accessibles a n'importe qui sur Internet.", "parade": "Activer Block Public Access par defaut au niveau du compte Cloud."}, {"cat": "cloud", "titre": "Malicious VS Code Extensions", "detail": "Une extension de l'editeur de code vole les tokens de session des developpeurs pour acceder a leur environnement de production.", "parade": "Restreindre l'installation d'extensions non approuvees sur les postes admins."}, {"cat": "cloud", "titre": "Attaque par dictionnaire SSH", "detail": "Test automatise de mots de passe courants sur le port 22 pour compromettre des serveurs Linux mal configures.", "parade": "Desactiver l'authentification par mot de passe (cles uniquement) et changer le port par defaut."}, {"cat": "cloud", "titre": "Privilege Escalation Kubernetes (K8s)", "detail": "Un pod compromis utilise une faille dans l'API Server pour obtenir les droits Cluster Admin.", "parade": "Utilisation du RBAC (Role-Based Access Control) et isolation des espaces de noms (Namespaces)."}];
+
+
+var CAT_LABELS = {
+  reseau: '🛡️ Réseau & Bordure',
+  systeme: '💻 Systèmes & Serveurs',
+  identite: '🔑 Identité & AD',
+  cloud: '☁️ Cloud & Apps'
+};
+
+function renderArticles(cat){
+  var container = document.getElementById('veille-articles');
+  if(!container) return;
+  var list = cat === 'all' ? ARTICLES : ARTICLES.filter(function(a){ return a.cat === cat; });
+  container.innerHTML = list.map(function(a, i){
+    var id = 'art-'+i;
+    return '<div class="rss-card" style="cursor:pointer;" onclick="toggleArticle(\''+id+'\')">'
+      + '<div class="rss-card-source">'+CAT_LABELS[a.cat]+'</div>'
+      + '<div class="rss-card-title" style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;">'
+      +   '<span>'+a.titre+'</span>'
+      +   '<span id="arr-'+i+'" style="font-family:\'IBM Plex Mono\',monospace;font-size:.7rem;color:#8896A5;flex-shrink:0;">▸</span>'
+      + '</div>'
+      + '<div id="'+id+'" style="display:none;margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--paper2);">'
+      +   '<div style="margin-bottom:.6rem;">'
+      +     '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);opacity:.5;margin-bottom:.3rem;">Détail de l\'attaque</div>'
+      +     '<p class="rss-card-desc">'+a.detail+'</p>'
+      +   '</div>'
+      +   '<div style="background:var(--paper);border-left:3px solid #2ECC71;padding:.7rem 1rem;">'
+      +     '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#2ECC71;margin-bottom:.3rem;">Parade</div>'
+      +     '<p class="rss-card-desc" style="margin:0;">'+a.parade+'</p>'
+      +   '</div>'
+      + '</div>'
+      + '</div>';
   }).join('');
-  var el=document.getElementById('last-update');
-  if(el) el.textContent='Mise à jour : '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
 }
-function loadFeed(src,btn){
-  currentSrc=src;
-  document.querySelectorAll('.rss-src-btn').forEach(function(b){ b.classList.remove('active'); });
+
+function toggleArticle(id){
+  var el = document.getElementById(id);
+  var idx = id.replace('art-','');
+  var arr = document.getElementById('arr-'+idx);
+  if(!el) return;
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if(arr) arr.textContent = open ? '▸' : '▾';
+}
+
+function filterVeille(cat, btn){
+  document.querySelectorAll('#veille-filters .rss-src-btn').forEach(function(b){ b.classList.remove('active'); });
   if(btn) btn.classList.add('active');
-  var f=document.getElementById('rss-feed');
-  if(f){ var sk=''; for(var i=0;i<5;i++) sk+='<div class="rss-skeleton"></div>'; f.innerHTML=sk; }
-  var feed=FEEDS[src];
-  var api='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed.url)+'&api_key=public&count=8';
-  fetch(api)
-    .then(function(r){ return r.json(); })
-    .then(function(data){ if(data.status==='ok') renderItems(data.items,feed.label); else renderError(); })
-    .catch(function(){ renderError(); });
+  renderArticles(cat);
 }
-function reloadFeed(){
-  loadFeed(currentSrc, document.querySelector('.rss-src-btn.active'));
-}
+
 function submitForm(){
   var s=document.getElementById('sujet').value;
   var m=document.getElementById('message').value;
