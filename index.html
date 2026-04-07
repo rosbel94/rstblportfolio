@@ -887,7 +887,7 @@ footer::after{
     <!-- Texte -->
     <div class="hero-text">
       <div>
-        <div class="eyebrow">BTS SIO · Option SISR · 2024–2026</div>
+        <div class="eyebrow">BTS SIO · Option SISR · 2023–2025</div>
 
         <h1 class="hero-name">
           <!-- REMPLACER -->
@@ -1191,53 +1191,73 @@ footer::after{
     <!-- Matières et volume horaire -->
     <div style="background:var(--white);padding:1.8rem 2rem;margin-bottom:3px;position:relative;z-index:1;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Matières &amp; volume horaire</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:#8896A5;margin-bottom:1rem;">Source : <a href="https://www.lyceedecachan.fr/bts/bts-sio/" target="_blank" style="color:var(--accent);">lyceedecachan.fr</a> &amp; référentiel officiel Éducation nationale</div>
 
-      <!-- Tronc commun -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);">Tronc commun (toutes options)</div>
+      <!-- Volumes globaux -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);margin-bottom:1.4rem;">
+        <div style="background:var(--ink);padding:1rem 1.4rem;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;">1ère année — 36h/semaine</div>
+          <div style="color:rgba(255,255,255,.65);font-size:.85rem;">13h enseignement général<br>23h enseignement professionnel</div>
+        </div>
+        <div style="background:var(--paper);padding:1rem 1.4rem;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);opacity:.5;margin-bottom:.5rem;">2ème année — 34h/semaine</div>
+          <div style="color:#4A5568;font-size:.85rem;">11h enseignement général<br>23h enseignement professionnel</div>
+        </div>
+      </div>
+
+      <!-- Enseignement général -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);">Enseignement général (commun aux 2 années)</div>
       <table style="width:100%;border-collapse:collapse;margin-bottom:1.4rem;">
+        <thead>
+          <tr style="background:var(--paper2);">
+            <th style="padding:.5rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:#8896A5;text-align:left;font-weight:500;">Matière</th>
+            <th style="padding:.5rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:#8896A5;text-align:right;font-weight:500;">1ère année</th>
+            <th style="padding:.5rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:#8896A5;text-align:right;font-weight:500;">2ème année</th>
+          </tr>
+        </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--paper2);">
             <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Culture générale et expression</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;white-space:nowrap;">2h / semaine</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h</td>
           </tr>
           <tr style="border-bottom:1px solid var(--paper2);">
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Mathématiques</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h / semaine</td>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Expression et communication en langue anglaise</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h</td>
           </tr>
           <tr style="border-bottom:1px solid var(--paper2);">
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Anglais</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h / semaine</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--paper2);">
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Support et mise à disposition de services informatiques</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">4h / semaine</td>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Mathématiques pour l'informatique</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">3h</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h</td>
           </tr>
           <tr>
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Cybersécurité des services informatiques</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">3h / semaine</td>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Culture économique, juridique et managériale</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">4h</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">3h</td>
           </tr>
         </tbody>
       </table>
 
-      <!-- Option SISR -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);">Option SISR spécifique</div>
+      <!-- Enseignement professionnel -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#8896A5;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);">Enseignement professionnel</div>
       <table style="width:100%;border-collapse:collapse;">
         <tbody>
           <tr style="border-bottom:1px solid var(--paper2);">
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Administration des systèmes et des réseaux</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">6h / semaine</td>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Bloc 1 — Support et mise à disposition de services informatiques</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:right;">1A + 2A</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--paper2);background:var(--paper);">
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:600;">Bloc 2 SISR — Administration des systèmes et des réseaux</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--accent);text-align:right;">2A</td>
           </tr>
           <tr style="border-bottom:1px solid var(--paper2);">
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Gestion du patrimoine informatique</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">4h / semaine</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--paper2);">
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Réponse aux incidents et support</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">3h / semaine</td>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Bloc 3 — Cybersécurité des services informatiques</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:right;">1A + 2A</td>
           </tr>
           <tr>
-            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Projet personnel encadré (PPE)</td>
-            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);text-align:right;">2h / semaine</td>
+            <td style="padding:.6rem .4rem;font-size:.88rem;color:var(--ink);font-weight:500;">Ateliers de professionnalisation &amp; PPE</td>
+            <td style="padding:.6rem .4rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#8896A5;text-align:right;">1A + 2A</td>
           </tr>
         </tbody>
       </table>
